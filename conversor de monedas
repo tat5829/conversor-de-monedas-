@@ -1,0 +1,59 @@
+# Conversor de Monedas
+# Autor: [Tu Nombre]
+# Descripción: Programa básico para convertir monedas con tasas de cambio predefinidas.
+
+def mostrar_menu():
+    print("\nBienvenido al conversor de monedas")
+    print("Seleccione las monedas que desea convertir:")
+    print("1. USD a EUR")
+    print("2. EUR a USD")
+    print("3. USD a MXN")
+    print("4. MXN a USD")
+    print("5. Salir")
+
+def convertir_monedas(opcion, cantidad):
+    tasas_de_cambio = {
+        "USD_EUR": 0.85,
+        "EUR_USD": 1.18,
+        "USD_MXN": 17.5,
+        "MXN_USD": 0.057
+    }
+
+    if opcion == 1:
+        return cantidad * tasas_de_cambio["USD_EUR"]
+    elif opcion == 2:
+        return cantidad * tasas_de_cambio["EUR_USD"]
+    elif opcion == 3:
+        return cantidad * tasas_de_cambio["USD_MXN"]
+    elif opcion == 4:
+        return cantidad * tasas_de_cambio["MXN_USD"]
+    else:
+        return None
+
+def main():
+    while True:
+        mostrar_menu()
+        try:
+            opcion = int(input("Ingrese el número de su opción: "))
+
+            if opcion == 5:
+                print("Gracias por usar el conversor. ¡Hasta luego!")
+                break
+
+            if opcion not in [1, 2, 3, 4]:
+                print("Opción no válida. Intente nuevamente.")
+                continue
+
+            cantidad = float(input("Ingrese la cantidad a convertir: "))
+
+            resultado = convertir_monedas(opcion, cantidad)
+            if resultado is not None:
+                print(f"Resultado de la conversión: {resultado:.2f}")
+            else:
+                print("Error en la conversión. Intente nuevamente.")
+
+        except ValueError:
+            print("Entrada no válida. Por favor ingrese números.")
+
+if __name__ == "__main__":
+    main()
